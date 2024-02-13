@@ -1,43 +1,18 @@
 // App.tsx
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
-const TestPage: React.FC = () => {
-  return (
-    <div>
-      <h1>Page de Test</h1>
-      <p>Ceci est le contenu de la page de test.</p>
-    </div>
-  );
-}
-
-const HomePage: React.FC = () => {
-  return (
-    <div>
-      <h1>Accueil</h1>
-      <p>Ceci est la page d'accueil.</p>
-    </div>
-  );
-}
+import HomePage from './components/HomePage'; // Importer le composant HomePage
+import TestPage from './components/TestPage'; // Importer le composant TestPage
+import { Barnav } from './components/Barnav';
 
 const App: React.FC = () => {
   return (
     <Router>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Accueil</Link>
-          </li>
-          <li>
-            <Link to="/test">Test</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <hr />
+      <Barnav />
+     
 
       <Routes>
+        
         <Route path="/" element={<HomePage />} />
         <Route path="/test" element={<TestPage />} />
       </Routes>
