@@ -5,6 +5,8 @@ import TestPage from './components/TestPage';
 import { Barnav } from './components/Barnav';
 import Bow from './components/Bow';
 import ChaosDotBow from './components/ChaosDotBow';
+import Bossprofit from './components/Bossprofit';
+import Shaper from './components/Shaper';
 
 const App: React.FC = () => {
   return (
@@ -15,10 +17,10 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/test" element={<TestPage />} />
         <Route path="/bow" element={<Bow />}>
-          {/* Route pour /bow */}
         </Route>
-        {/* Route pour /bow/chaosdotbow */}
         <Route path="/bow/chaosdotbow" element={<ChaosDotBow />} />
+        <Route path="/bossprofit" element={<Bossprofit />}></Route>
+        <Route path="/bossprofit/shaper" element={<Shaper />} />
       </Routes>
     </Router>
   );

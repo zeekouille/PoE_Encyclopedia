@@ -17,10 +17,9 @@ export const Barnav = () => {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="test">Link</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="bow">Bow</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/bow">Bow</NavDropdown.Item>
+              <NavDropdown.Item href="/bossprofit">Boss profit</NavDropdown.Item>
+          
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
