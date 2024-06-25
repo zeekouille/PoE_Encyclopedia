@@ -12,14 +12,12 @@ const App: React.FC = () => {
   return (
     <Router>
       <Barnav />
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/test" element={<TestPage />} />
-        <Route path="/bow" element={<Bow />}>
-        </Route>
+        <Route path="/bow" element={<Bow />} />
         <Route path="/bow/chaosdotbow" element={<ChaosDotBow />} />
-        <Route path="/bossprofit" element={<Bossprofit />}></Route>
+        <Route path="/bossprofit" element={<Bossprofit />} />
         <Route path="/bossprofit/shaper" element={<Shaper />} />
       </Routes>
     </Router>

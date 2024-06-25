@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './styles.css'; // Import the external CSS file
 
 export const Barnav = () => {
@@ -20,7 +19,7 @@ export const Barnav = () => {
           
               
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/bow">Crafting ({'later'})</NavDropdown.Item>
+               <NavDropdown.Item href="/bow">Crafting ({'later'})</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

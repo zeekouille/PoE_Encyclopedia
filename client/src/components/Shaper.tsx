@@ -6,7 +6,11 @@ import fragmentOfMinotaur from '../image/FragmentMinotaur.png';
 import fragmentOfHydra from '../image/FragmentHydra.png';
 import fragmentOfShapeImage from '../image/FragmentOfShape.png';
 import fragmentOfKnowledgeImage from '../image/FragmentOfKnowledge.png';
-
+import dyingSunImage from '../image/DyingSun.png';
+import voidWalkerImage from '../image/Voidwalker.png';
+import solsticeVigilImage from '../image/SolsticeVigil.png';
+import shapersTouchImage from '../image/ShapersTouch.png'
+import './Shaper.css';
 
 export default function Shaper() {
   const [timePerRun, setTimePerRun] = useState<number>(0);
@@ -20,14 +24,14 @@ export default function Shaper() {
   const [fragmentOfPhoenixPrice, setFragmentOfPhoenixPrice] = useState<number>(0);
   const [fragmentOfChimeraPrice, setFragmentOfChimeraPrice] = useState<number>(0);
   const [fragmentOfMinotaurPrice, setFragmentOfMinotaurPrice] = useState<number>(0);
- 
-  
+
+
 
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-   // Fonction pour calculer et mettre à jour le profit par shaper
-   const calculateAndSetProfitPerShaper = () => {
+  // Fonction pour calculer et mettre à jour le profit par shaper
+  const calculateAndSetProfitPerShaper = () => {
     // Remplacez fragmentOfKnowledgePrice et fragmentOfShapePrice par les valeurs appropriées
     const newProfitPerShaper = ((fragmentOfKnowledgePrice + fragmentOfShapePrice) / 2 - fragmentOfChimeraPrice - fragmentOfHydraPrice - fragmentOfMinotaurPrice - fragmentOfPhoenixPrice);
     setProfitPerShaper(newProfitPerShaper);
@@ -70,61 +74,109 @@ export default function Shaper() {
       {!loading && !error && <p style={{ color: 'green' }}>API chargée avec succès</p>}
 
       <p>Cost per run :</p>
-      <img src={fragmentOfHydra} alt="Fragment of Hydra" />
-      <input
-        type="number"
-        value={fragmentOfHydraPrice}
-        onChange={(e) => setFragmentOfHydraPrice(Number(e.target.value))}
-      />
-      <br />
-      <img src={fragmentOfPhoenix} alt="Fragment of Phoenix" />
-      <input
-        type="number"
-        value={fragmentOfPhoenixPrice}
-        onChange={(e) => setFragmentOfPhoenixPrice(Number(e.target.value))}
-      />
-      <br />
-      <img src={fragmentOfChimera} alt="Fragment of Chimera" />
-      <input
-        type="number"
-        value={fragmentOfChimeraPrice}
-        onChange={(e) => setFragmentOfChimeraPrice(Number(e.target.value))}
-      />
-      <br />
-      <img src={fragmentOfMinotaur} alt="Fragment of Minotaur" />
-      <input
-        type="number"
-        value={fragmentOfMinotaurPrice}
-        onChange={(e) => setFragmentOfMinotaurPrice(Number(e.target.value))}
-      />
-      <br />
+      <div>
+        <img src={fragmentOfHydra} alt="Fragment of Hydra" className="smallImage" />
+        <input
+          type="number"
+          value={fragmentOfHydraPrice}
+          onChange={(e) => setFragmentOfHydraPrice(Number(e.target.value))}
+        />
+
+      </div>
+      <div>
+        <img src={fragmentOfPhoenix} alt="Fragment of Phoenix" className="smallImage" />
+        <input
+          type="number"
+          value={fragmentOfPhoenixPrice}
+          onChange={(e) => setFragmentOfPhoenixPrice(Number(e.target.value))}
+        />
+      </div>
+
+      <div>
+        <img src={fragmentOfChimera} alt="Fragment of Chimera" className="smallImage" />
+        <input
+          type="number"
+          value={fragmentOfChimeraPrice}
+          onChange={(e) => setFragmentOfChimeraPrice(Number(e.target.value))}
+        />
+      </div>
+
+      <div>
+        <img src={fragmentOfMinotaur} alt="Fragment of Minotaur" className="smallImage" />
+        <input
+          type="number"
+          value={fragmentOfMinotaurPrice}
+          onChange={(e) => setFragmentOfMinotaurPrice(Number(e.target.value))}
+        />
+      </div>
+
       <p>Total cost per run : {costPerRun}</p>
       <p>Reward prices : </p>
-      <img src={fragmentOfShapeImage} alt="Fragment of Shape" />
-      <input
-        type="number"
-        value={fragmentOfShapePrice}
-        onChange={(e) => setFragmentOfShapePrice(Number(e.target.value))}
-      />
-      <br></br>
+      <p>Guarenteed :</p>
+      <div>
+        <img src={fragmentOfKnowledgeImage} alt="Fragment of Knowledge" className="smallImage" />
+        <input
+          type="number"
+          value={fragmentOfKnowledgePrice}
+          onChange={(e) => setFragmentOfKnowledgePrice(Number(e.target.value))}
+        />
+      </div>
 
-      <img src={fragmentOfKnowledgeImage} alt="Fragment of Knowledge" />
-      <input
-        type="number"
-        value={fragmentOfKnowledgePrice}
-        onChange={(e) => setFragmentOfKnowledgePrice(Number(e.target.value))}
-      />
+      <div>
+        <img src={fragmentOfShapeImage} alt="Fragment of Shape" className="smallImage" />
+        <input
+          type="number"
+          value={fragmentOfShapePrice}
+          onChange={(e) => setFragmentOfShapePrice(Number(e.target.value))}
+        />
+      </div>
 
- 
-   
+      <p>Variable drops : </p>
+      <div>
+        <img src={dyingSunImage} alt="Dying Sun" className="mediumImage" />
+        <input
+          type="number"
+          value={fragmentOfShapePrice}
+          onChange={(e) => setFragmentOfShapePrice(Number(e.target.value))}
+        />
+      </div>
+      <div>
+        <img src={voidWalkerImage} alt="Voidwalker" className="smallImage" />
+        <input
+          type="number"
+          value={fragmentOfShapePrice}
+          onChange={(e) => setFragmentOfShapePrice(Number(e.target.value))}
+        />
+      </div>
+      <div>
+        <img src={solsticeVigilImage} alt="Solstice Vigil" className="smallImage" />
+        <input
+          type="number"
+          value={fragmentOfShapePrice}
+          onChange={(e) => setFragmentOfShapePrice(Number(e.target.value))}
+        />
+      </div>
+      <div>
+        <img src={shapersTouchImage} alt="Shaper's Touch" className="smallImage" />
+        <input
+          type="number"
+          value={fragmentOfShapePrice}
+          onChange={(e) => setFragmentOfShapePrice(Number(e.target.value))}
+        />
+      </div>
+
+
+
+
 
       <button onClick={calculateAndSetProfitPerShaper}>Calculate Profit</button>
+
 
       <p>Profit per shaper</p>
 
       {profitPerShaper}
-     
-   
+
+
     </>
   );
 };
