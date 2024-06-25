@@ -10,21 +10,17 @@ export const Barnav = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary custom-navbar" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="/">PoeEncyclopedia t'as vu la bête de phrase</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="test">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/bow">Bow</NavDropdown.Item>
+                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            
               <NavDropdown.Item href="/bossprofit">Boss profit</NavDropdown.Item>
           
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/bow">Crafting ({'later'})</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

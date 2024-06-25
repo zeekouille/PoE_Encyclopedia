@@ -4,31 +4,36 @@ import fragmentOfChimera from '../image/FragmentChimera.png';
 import fragmentOfPhoenix from '../image/FragmentPhoenix.png';
 import fragmentOfMinotaur from '../image/FragmentMinotaur.png';
 import fragmentOfHydra from '../image/FragmentHydra.png';
+import fragmentOfShapeImage from '../image/FragmentOfShape.png';
+import fragmentOfKnowledgeImage from '../image/FragmentOfKnowledge.png';
+
 
 export default function Shaper() {
   const [timePerRun, setTimePerRun] = useState<number>(0);
-  const [fragmentOfKnowledge, setFragmentOfKnowledge] = useState<number>(303);
-  const [fragmentOfShape, setFragmentOfShape] = useState<number>(350);
+  const [fragmentOfKnowledgePrice, setFragmentOfKnowledgePrice] = useState<number>(0);
+  const [fragmentOfShapePrice, setFragmentOfShapePrice] = useState<number>(0);
   const [starforge, setStarforge] = useState<number>(350);
-  const [profit, setProfit] = useState<number | null>(null);
+  const [profitPerShaper, setProfitPerShaper] = useState<number | null>(0);
 
   const [costPerRun, setCostPerRun] = useState<number>(0);
   const [fragmentOfHydraPrice, setFragmentOfHydraPrice] = useState<number>(0);
   const [fragmentOfPhoenixPrice, setFragmentOfPhoenixPrice] = useState<number>(0);
   const [fragmentOfChimeraPrice, setFragmentOfChimeraPrice] = useState<number>(0);
   const [fragmentOfMinotaurPrice, setFragmentOfMinotaurPrice] = useState<number>(0);
+ 
+  
 
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fonction pour calculer le profit par shaper
-  const profitPerShaper = () => (fragmentOfKnowledge + fragmentOfShape) / 4 + starforge * 0.035;
-
-  // Fonction pour gérer le calcul du profit
-  const handleCalculateProfit = () => {
-    const calculatedProfit = profitPerShaper();
-    setProfit(calculatedProfit);
+   // Fonction pour calculer et mettre à jour le profit par shaper
+   const calculateAndSetProfitPerShaper = () => {
+    // Remplacez fragmentOfKnowledgePrice et fragmentOfShapePrice par les valeurs appropriées
+    const newProfitPerShaper = ((fragmentOfKnowledgePrice + fragmentOfShapePrice) / 2 - fragmentOfChimeraPrice - fragmentOfHydraPrice - fragmentOfMinotaurPrice - fragmentOfPhoenixPrice);
+    setProfitPerShaper(newProfitPerShaper);
   };
+
+
 
   // Effet pour mettre à jour le coût total par run lorsque les prix des fragments changent
   useEffect(() => {
@@ -94,18 +99,32 @@ export default function Shaper() {
       />
       <br />
       <p>Total cost per run : {costPerRun}</p>
-
-      <p>Time per run in sec</p>
+      <p>Reward prices : </p>
+      <img src={fragmentOfShapeImage} alt="Fragment of Shape" />
       <input
         type="number"
-        value={timePerRun}
-        onChange={(e) => setTimePerRun(Number(e.target.value))}
+        value={fragmentOfShapePrice}
+        onChange={(e) => setFragmentOfShapePrice(Number(e.target.value))}
+      />
+      <br></br>
+
+      <img src={fragmentOfKnowledgeImage} alt="Fragment of Knowledge" />
+      <input
+        type="number"
+        value={fragmentOfKnowledgePrice}
+        onChange={(e) => setFragmentOfKnowledgePrice(Number(e.target.value))}
       />
 
-      <button onClick={handleCalculateProfit}>Calculate Profit</button>
+ 
+   
+
+      <button onClick={calculateAndSetProfitPerShaper}>Calculate Profit</button>
 
       <p>Profit per shaper</p>
-      <p>{profit !== null ? profit : 'Click the button to calculate profit'}</p>
+
+      {profitPerShaper}
+     
+   
     </>
   );
 };
