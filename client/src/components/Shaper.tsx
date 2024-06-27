@@ -13,6 +13,7 @@ import shapersTouchImage from '../image/ShapersTouch.png';
 import orbOfDominanceImage from '../image/OrbOfDominance.png';
 import './Shaper.css';
 
+
 interface Prices {
   fragmentOfHydra: number;
   fragmentOfPhoenix: number;
@@ -27,7 +28,10 @@ interface Prices {
   voidWalker: number;
 }
 
-export default function Shaper() {
+
+
+
+export default function Shaper2() {
   const [prices, setPrices] = useState<Prices>({
     fragmentOfHydra: 0,
     fragmentOfPhoenix: 0,
@@ -42,6 +46,8 @@ export default function Shaper() {
     voidWalker: 0,
   });
 
+
+
  
   const [profitPerShaper, setProfitPerShaper] = useState<number | null>(0);
   const [loading, setLoading] = useState<boolean>(true);
@@ -55,10 +61,57 @@ export default function Shaper() {
   };
 
   const calculateAndSetProfitPerShaper = useCallback(() => {
-    const { fragmentOfKnowledge, fragmentOfShape, fragmentOfChimera, fragmentOfHydra, fragmentOfMinotaur, fragmentOfPhoenix } = prices;
-    const newProfitPerShaper = ((fragmentOfKnowledge + fragmentOfShape) / 2 - fragmentOfChimera - fragmentOfHydra - fragmentOfMinotaur - fragmentOfPhoenix);
-    setProfitPerShaper(newProfitPerShaper);
+    // Accumulate total price of all items
+    let allRewardPrice = 0;
+    let pricePerRun = 0;
+  
+    // Iterate through the entries of the prices object
+    Object.entries(prices).forEach(([itemName, value], index) => {
+      if (index < 4) { // Include items at index 0 to 3 for price per run
+        pricePerRun += value;
+      } else { // Exclude items at index 0 to 3 for reward price
+        if (itemName === "solsticeVigil") {
+          value *= 0.0518; // Multiply by 0.0518 if item is solsticeVigil
+          
+        }  else if (itemName === "fragmentOfShape") {
+            // Ajoutez ici la logique spécifique pour "fragmentOfShape" si nécessaire
+            // Par exemple, multipliez par un autre facteur ou appliquez une autre transformation
+            value *= 0.5; // Exemple : multiplier par 0.1
+          }  else if (itemName === "fragmentOfKnowledge") {
+            // Ajoutez ici la logique spécifique pour "fragmentOfShape" si nécessaire
+            // Par exemple, multipliez par un autre facteur ou appliquez une autre transformation
+            value *= 0.5; // Exemple : multiplier par 0.1
+          }  else if (itemName === "orbOfDominance") {
+            // Ajoutez ici la logique spécifique pour "fragmentOfShape" si nécessaire
+            // Par exemple, multipliez par un autre facteur ou appliquez une autre transformation
+            value *= 0.025; // Exemple : multiplier par 0.1
+          }  else if (itemName === "voidWalker") {
+            // Ajoutez ici la logique spécifique pour "fragmentOfShape" si nécessaire
+            // Par exemple, multipliez par un autre facteur ou appliquez une autre transformation
+            value *= 0.2428; // Exemple : multiplier par 0.1
+          }  else if (itemName === "dyingSun") {
+            // Ajoutez ici la logique spécifique pour "fragmentOfShape" si nécessaire
+            // Par exemple, multipliez par un autre facteur ou appliquez une autre transformation
+            value *= 0.161; // Exemple : multiplier par 0.1
+          }  else if (itemName === "shapersTouch") {
+            // Ajoutez ici la logique spécifique pour "fragmentOfShape" si nécessaire
+            // Par exemple, multipliez par un autre facteur ou appliquez une autre transformation
+            value *= 0.512; // Exemple : multiplier par 0.1
+          }
+        allRewardPrice += value;
+      }
+    });
+  
+    // Calculate profit per shaper
+    const profitPerShaper = allRewardPrice - pricePerRun;
+  
+    // Update state with the calculated profit per shaper
+    setProfitPerShaper(profitPerShaper);
   }, [prices]);
+  
+  
+  
+
 
   useEffect(() => {
     const fetchPrices = async () => {
@@ -81,10 +134,10 @@ export default function Shaper() {
     };
 
     fetchPrices();
-  }, []);
+  }, [prices]);
 
   const renderPriceInput = (name: keyof Prices, value: number, imageSrc: string) => (
-    <div key={name}>
+    <div key={name} className="priceInputContainer">
       <img src={imageSrc} alt={name} className="smallImage" />
       <input
         type="number"
@@ -96,16 +149,39 @@ export default function Shaper() {
 
   return (
     <>
-      <div>Shaper</div>
+     <div className="App">
+      <div className="sidebar">
+        <h2>Navigation</h2>
+        <ul>
+          <li>
+            <a href="#crafting">Crafting</a>
+            <ul>
+            <li><a href="/bow/chaosdotbow" className="sub-link">Chaos Dot Bow</a></li>
+            </ul>
+          </li>
+          <li className="separator"></li>
+          <li>
+            <a href="#boss-profit">Boss Profit</a>
+            <ul>
+              <li><a href="/bossprofit/shaper" className="sub-link">Shaper</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div className="main-content">
       {loading && <p>Chargement en cours...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {!loading && !error && <p style={{ color: 'green' }}>API chargée avec succès</p>}
 
       <p>Cost per run :</p>
-      {renderPriceInput('fragmentOfHydra', prices.fragmentOfHydra, fragmentOfHydra)}
-      {renderPriceInput('fragmentOfPhoenix', prices.fragmentOfPhoenix, fragmentOfPhoenix)}
+      <div className="priceRow">
+          {renderPriceInput('fragmentOfHydra', prices.fragmentOfHydra, fragmentOfHydra)}
+          {renderPriceInput('fragmentOfPhoenix', prices.fragmentOfPhoenix, fragmentOfPhoenix)}
+        </div>
+        <div className="priceRow">
       {renderPriceInput('fragmentOfChimera', prices.fragmentOfChimera, fragmentOfChimera)}
       {renderPriceInput('fragmentOfMinotaur', prices.fragmentOfMinotaur, fragmentOfMinotaur)}
+      </div>
 
       <p>Total cost per run: {prices.fragmentOfHydra + prices.fragmentOfPhoenix + prices.fragmentOfChimera + prices.fragmentOfMinotaur}</p>
 
@@ -122,7 +198,13 @@ export default function Shaper() {
       {renderPriceInput('orbOfDominance', prices.orbOfDominance, orbOfDominanceImage)}
 
       <button onClick={calculateAndSetProfitPerShaper}>Calculate Profit</button>
-      <p>Profit per shaper: {profitPerShaper}</p>
+      <p>Profit per shaper: {profitPerShaper} chaos</p>
+      </div>
+    </div>
+
+
+ 
+   
     </>
   );
 }
