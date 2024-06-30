@@ -25,6 +25,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <li><a href="/bossprofit/shaper" className="sub-link">Shaper</a></li>
             </ul>
           </li>
+          <li className="separator"></li>
+          <li>
+            <a >Api</a>
+            <ul>
+              <li><a href="/apiFetchedPrice" className="sub-link">Currency</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
       <div className="main-content">
