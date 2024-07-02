@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/PoE_Encyclopedia/static/css/main.49c6b226.css",
-    "main.js": "/PoE_Encyclopedia/static/js/main.c2f14939.js",
+    "main.js": "/PoE_Encyclopedia/static/js/main.d453575e.js",
     "static/js/592.77751a5b.chunk.js": "/PoE_Encyclopedia/static/js/592.77751a5b.chunk.js",
     "static/media/Step6.png": "/PoE_Encyclopedia/static/media/Step6.690c14fdee86d1ba9cac.png",
     "static/media/Step5.png": "/PoE_Encyclopedia/static/media/Step5.efd53ddeec35f39845b8.png",
@@ -14,11 +14,11 @@
     "static/media/OrbOfDominance.png": "/PoE_Encyclopedia/static/media/OrbOfDominance.8b835697cf1c20b138b2.png",
     "index.html": "/PoE_Encyclopedia/index.html",
     "main.49c6b226.css.map": "/PoE_Encyclopedia/static/css/main.49c6b226.css.map",
-    "main.c2f14939.js.map": "/PoE_Encyclopedia/static/js/main.c2f14939.js.map",
+    "main.d453575e.js.map": "/PoE_Encyclopedia/static/js/main.d453575e.js.map",
     "592.77751a5b.chunk.js.map": "/PoE_Encyclopedia/static/js/592.77751a5b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.49c6b226.css",
-    "static/js/main.c2f14939.js"
+    "static/js/main.d453575e.js"
   ]
 }
