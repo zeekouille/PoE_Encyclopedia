@@ -1,15 +1,24 @@
 {
   "files": {
-    "main.css": "/TSSSS/static/css/main.b54073c3.css",
-    "main.js": "/TSSSS/static/js/main.b8022d35.js",
-    "static/js/592.599f76a2.chunk.js": "/TSSSS/static/js/592.599f76a2.chunk.js",
-    "index.html": "/TSSSS/index.html",
-    "main.b54073c3.css.map": "/TSSSS/static/css/main.b54073c3.css.map",
-    "main.b8022d35.js.map": "/TSSSS/static/js/main.b8022d35.js.map",
-    "592.599f76a2.chunk.js.map": "/TSSSS/static/js/592.599f76a2.chunk.js.map"
+    "main.css": "/PoE_Encyclopedia/static/css/main.49c6b226.css",
+    "main.js": "/PoE_Encyclopedia/static/js/main.9d08bf19.js",
+    "static/js/592.77751a5b.chunk.js": "/PoE_Encyclopedia/static/js/592.77751a5b.chunk.js",
+    "static/media/Step6.png": "/PoE_Encyclopedia/static/media/Step6.690c14fdee86d1ba9cac.png",
+    "static/media/Step5.png": "/PoE_Encyclopedia/static/media/Step5.efd53ddeec35f39845b8.png",
+    "static/media/Step2.png": "/PoE_Encyclopedia/static/media/Step2.25944a3338d532f27bc7.png",
+    "static/media/Step3.png": "/PoE_Encyclopedia/static/media/Step3.b02c8c23419c15e3fd00.png",
+    "static/media/Step1.png": "/PoE_Encyclopedia/static/media/Step1.3d938b7d632d61ea46d3.png",
+    "static/media/ShapersTouch.png": "/PoE_Encyclopedia/static/media/ShapersTouch.eeca49af3117656911b6.png",
+    "static/media/Voidwalker.png": "/PoE_Encyclopedia/static/media/Voidwalker.1a0fb2720cdfebfd7b80.png",
+    "static/media/DyingSun.png": "/PoE_Encyclopedia/static/media/DyingSun.ed2b4a48f3a329c0fe48.png",
+    "static/media/OrbOfDominance.png": "/PoE_Encyclopedia/static/media/OrbOfDominance.8b835697cf1c20b138b2.png",
+    "index.html": "/PoE_Encyclopedia/index.html",
+    "main.49c6b226.css.map": "/PoE_Encyclopedia/static/css/main.49c6b226.css.map",
+    "main.9d08bf19.js.map": "/PoE_Encyclopedia/static/js/main.9d08bf19.js.map",
+    "592.77751a5b.chunk.js.map": "/PoE_Encyclopedia/static/js/592.77751a5b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b54073c3.css",
-    "static/js/main.b8022d35.js"
+    "static/css/main.49c6b226.css",
+    "static/js/main.9d08bf19.js"
   ]
 }
