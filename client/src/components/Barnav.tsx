@@ -9,7 +9,7 @@ export const Barnav = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary custom-navbar" variant="dark">
       <Container>
-        <Navbar.Brand href="/">PoeEncyclopedia t'as vu la bête de phrase</Navbar.Brand>
+        <Navbar.Brand>PoeEncyclopedia</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

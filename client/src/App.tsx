@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom"; // Import HashRouter instead of BrowserRouter
 import HomePage from "./components/HomePage";
 import TestPage from "./components/TestPage";
 import { Barnav } from "./components/Barnav";
@@ -9,6 +9,7 @@ import Bossprofit from "./components/Bossprofit";
 import Shaper from "./components/Shaper";
 import { DataProvider } from "./components/dataContext";
 import ApiFetchedPrice from "./components/apiFetchedPrices";
+import { Maven } from "./components/Maven";
 
 const App: React.FC = () => {
   return (
@@ -22,8 +23,8 @@ const App: React.FC = () => {
           <Route path="/bow/chaosdotbow" element={<ChaosDotBow />} />
           <Route path="/bossprofit" element={<Bossprofit />} />
           <Route path="/bossprofit/shaper" element={<Shaper />} />
+          <Route path="/bossprofit/maven" element={<Maven />} />
           <Route path="/apiFetchedPrice" element={<ApiFetchedPrice />} />
-          
         </Routes>
       </Router>
     </DataProvider>

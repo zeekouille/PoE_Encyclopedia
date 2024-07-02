@@ -1,5 +1,5 @@
-// Layout.tsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Layout.css';
 
 interface LayoutProps {
@@ -10,26 +10,29 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="App">
       <div className="sidebar">
-      <h2 > <a href="/">Navigation</a></h2>
+        <h2><Link to="/">Navigation</Link></h2>
         <ul>
           <li>
-            <a >Crafting</a>
+            <span>Crafting</span>
             <ul>
-              <li><a href="/bow/chaosdotbow" className="sub-link">Chaos Dot Bow</a></li>
+              <li><Link to="/bow/chaosdotbow" className="sub-link">Chaos Dot Bow</Link></li>
             </ul>
           </li>
           <li className="separator"></li>
           <li>
-            <a >Boss Profit</a>
+            <span>Boss Profit</span>
             <ul>
-              <li><a href="/bossprofit/shaper" className="sub-link">Shaper</a></li>
+              <li><Link to="/bossprofit/shaper" className="sub-link">Shaper</Link></li>
+            </ul>
+            <ul>
+              <li><Link to="/bossprofit/maven" className="sub-link">Maven</Link></li>
             </ul>
           </li>
           <li className="separator"></li>
           <li>
-            <a >Api</a>
+            <span>Api</span>
             <ul>
-              <li><a href="/apiFetchedPrice" className="sub-link">Currency</a></li>
+              <li><Link to="/apiFetchedPrice" className="sub-link">Currency</Link></li>
             </ul>
           </li>
         </ul>

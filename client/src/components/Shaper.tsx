@@ -1,7 +1,5 @@
-// Shaper2.tsx
-import React, {  useState, useCallback } from "react";
-
-import Layout from "./Layout"; // Importez le composant Layout
+import React, { useState, useCallback } from "react";
+import Layout from "./Layout";
 import fragmentOfChimera from "../image/FragmentChimera.png";
 import fragmentOfPhoenix from "../image/FragmentPhoenix.png";
 import fragmentOfMinotaur from "../image/FragmentMinotaur.png";
@@ -14,6 +12,7 @@ import solsticeVigilImage from "../image/SolsticeVigil.png";
 import shapersTouchImage from "../image/ShapersTouch.png";
 import orbOfDominanceImage from "../image/OrbOfDominance.png";
 import "./Shaper.css";
+import { useData } from './dataContext';
 
 interface Prices {
   fragmentOfHydra: number;
@@ -30,6 +29,8 @@ interface Prices {
 }
 
 export default function Shaper2() {
+  const { data, means } = useData();
+  
   const [prices, setPrices] = useState<Prices>({
     fragmentOfHydra: 0,
     fragmentOfPhoenix: 0,
@@ -45,7 +46,7 @@ export default function Shaper2() {
   });
 
   const [profitPerShaper, setProfitPerShaper] = useState<number | null>(0);
- 
+
   const handlePriceChange = (itemName: keyof Prices, value: number) => {
     setPrices((prevPrices) => ({
       ...prevPrices,
@@ -84,10 +85,6 @@ export default function Shaper2() {
     setProfitPerShaper(profitPerShaper);
   }, [prices]);
 
-  
-
-   
-
   const renderPriceInput = (
     name: keyof Prices,
     value: number,
@@ -105,8 +102,6 @@ export default function Shaper2() {
 
   return (
     <Layout>
-      
-     
       <p>Cost per run :</p>
       <div className="priceRow">
         {renderPriceInput(
@@ -132,14 +127,6 @@ export default function Shaper2() {
           fragmentOfMinotaur
         )}
       </div>
-
-      <p>
-        Total cost per run:{" "}
-        {prices.fragmentOfHydra +
-          prices.fragmentOfPhoenix +
-          prices.fragmentOfChimera +
-          prices.fragmentOfMinotaur}
-      </p>
 
       <p>Reward prices:</p>
       <p>Guaranteed:</p>

@@ -3,9 +3,9 @@ import axios from 'axios';
 import Popup from './Popup'; // Import du composant Popup
 
 interface DataContextType {
-  data: any;
-  names: string[];  // Ajout de la variable names
-  means: number[];  // Ajout de la variable means
+  data: any[];
+  names: string[];
+  means: number[];
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -15,26 +15,34 @@ interface DataProviderProps {
 }
 
 export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<any[]>([]);
   const [names, setNames] = useState<string[]>([]);
   const [means, setMeans] = useState<number[]>([]);
   const [fetchStatus, setFetchStatus] = useState<{ success: boolean; message: string } | null>(null);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://api.poe.watch/get?category=currency&league=Necropolis');
-      const fetchedData = response.data;
+      const [currencyResponse, fragmentResponse] = await Promise.all([
+        axios.get('https://api.poe.watch/get?category=currency&league=Necropolis'),
+        axios.get('https://api.poe.watch/get?category=fragment&league=Necropolis')
+      ]);
 
-      // Extraction des noms et des moyennes
-      const fetchedNames = fetchedData.map((item: any) => item.name);
-      const fetchedMeans = fetchedData.map((item: any) => item.mean);
+      const fetchedCurrencyData = currencyResponse.data;
+      const fetchedFragmentData = fragmentResponse.data;
 
-      setData(fetchedData);
-      setNames(fetchedNames);
-      setMeans(fetchedMeans);
+      const fetchedCurrencyNames = fetchedCurrencyData.map((item: any) => item.name);
+      const fetchedCurrencyMeans = fetchedCurrencyData.map((item: any) => item.mean);
+
+      const fetchedFragmentNames = fetchedFragmentData.map((item: any) => item.name);
+      const fetchedFragmentMeans = fetchedFragmentData.map((item: any) => item.mean);
+
+      setData([...fetchedCurrencyData, ...fetchedFragmentData]);
+      setNames([...fetchedCurrencyNames, ...fetchedFragmentNames]);
+      setMeans([...fetchedCurrencyMeans, ...fetchedFragmentMeans]);
+
       setFetchStatus({ success: true, message: 'Données récupérées avec succès!' });
 
-      console.log('Data fetched successfully:', fetchedData);
+      console.log('Data fetched successfully:', [...fetchedCurrencyData, ...fetchedFragmentData]);
     } catch (error) {
       console.error('Error fetching data:', error);
       setFetchStatus({ success: false, message: 'Échec de la récupération des données.' });
