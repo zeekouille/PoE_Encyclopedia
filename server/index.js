@@ -70,13 +70,13 @@ const fetchAndStoreData = async () => {
         ];
 
         // Vider la table avant d'insérer les nouvelles données
-        db.query('TRUNCATE TABLE currency', (err, result) => {
-            if (err) {
-                console.error('Erreur lors du vidage de la table currency:', err);
-                return;
-            }
-            console.log('Table currency vidée avec succès');
-        });
+       // db.query('TRUNCATE TABLE currency', (err, result) => {
+         //   if (err) {
+           //     console.error('Erreur lors du vidage de la table currency:', err);
+             //   return;
+           // }
+            //console.log('Table currency vidée avec succès');
+        //});
 
         // Insérer les nouvelles données (seulement "category", "name", "mean" et "icon")
         const insertQuery = 'INSERT INTO currency (name, mean, icon) VALUES ?';

@@ -12,6 +12,15 @@ interface ItemIcons {
   orbOfConflict: string;
 }
 
+interface ItemPrices {
+  realityFragment: number;
+  viridisVeil: number;
+  progenesis: number;
+  curioOfPotential: number;
+  shinyReliquaryKey: number;
+  orbOfConflict: number;
+}
+
 const UberMaven = () => {
   const { data } = useData();
 
@@ -24,9 +33,7 @@ const UberMaven = () => {
     orbOfConflict: "",
   });
 
-  const [itemPrices, setItemPrices] = useState<{
-    [itemName: string]: number;
-  }>({
+  const [itemPrices, setItemPrices] = useState<ItemPrices>({
     realityFragment: 0,
     viridisVeil: 0,
     progenesis: 0,
@@ -34,6 +41,15 @@ const UberMaven = () => {
     shinyReliquaryKey: 0,
     orbOfConflict: 0,
   });
+
+  const rewardValues: ItemPrices = {
+    realityFragment: 5,
+    viridisVeil: 0.55,
+    progenesis: 0.11,
+    orbOfConflict: 0.35,
+    shinyReliquaryKey: 0.015,
+    curioOfPotential: 0.05
+  };
 
   useEffect(() => {
     const itemsToFetch = [
@@ -45,13 +61,13 @@ const UberMaven = () => {
       { itemName: "Orb of Conflict", stateKey: "orbOfConflict" },
     ];
 
-    const newPrices: { [key: string]: number } = {};
+    const newPrices: Partial<ItemPrices> = {};
     const newIcons: Partial<ItemIcons> = { ...itemIcons };
 
     itemsToFetch.forEach((item) => {
       const itemData = data.find((d) => d.name === item.itemName);
       if (itemData) {
-        newPrices[item.stateKey] = itemData.mean;
+        newPrices[item.stateKey as keyof ItemPrices] = itemData.mean;
         newIcons[item.stateKey as keyof ItemIcons] = itemData.icon;
       }
     });
@@ -67,12 +83,13 @@ const UberMaven = () => {
   const [profitPerBoss, setProfitPerBoss] = useState<number>(0);
 
   const calculateProfitPerBoss = () => {
-    const pricePerRun = itemPrices.realityFragment * 5;
+    const pricePerRun = itemPrices.realityFragment * rewardValues.realityFragment;
     const rewardPerRun =
-      itemPrices.viridisVeil * 0.55 +
-      itemPrices.progenesis * 0.11 +
-      itemPrices.orbOfConflict * 0.35 +
-      itemPrices.curioOfPotential * 0.05;
+      itemPrices.viridisVeil * rewardValues.viridisVeil +
+      itemPrices.progenesis * rewardValues.progenesis +
+      itemPrices.orbOfConflict * rewardValues.orbOfConflict +
+      itemPrices.shinyReliquaryKey * rewardValues.shinyReliquaryKey +
+      itemPrices.curioOfPotential * rewardValues.curioOfPotential;
 
     const profitPerBoss = rewardPerRun - pricePerRun;
     console.log("Profit per boss:", profitPerBoss);
@@ -80,7 +97,7 @@ const UberMaven = () => {
     setProfitPerBoss(profitPerBoss);
   };
 
-  const handlePriceChange = (itemName: string, value: string) => {
+  const handlePriceChange = (itemName: keyof ItemPrices, value: string) => {
     const parsedValue = parseFloat(value);
     if (!isNaN(parsedValue)) {
       setItemPrices((prevPrices) => ({
@@ -96,31 +113,33 @@ const UberMaven = () => {
       <table className="centered-table">
         <thead>
           <tr>
-            <th>Item Name</th>
-            <th>Icon</th>
-            <th>Price</th>
-            <th>Set Price</th>
+            <th className="centered-text">Item Name</th>
+            <th className="centered-text">Icon</th>
+            <th className="centered-text">Price</th>
+            <th className="centered-text">Drop per run</th>
+            <th className="centered-text">Set Price</th>
           </tr>
         </thead>
         <tbody>
           {Object.keys(itemPrices).map((key) => (
-            <tr key={key}>
+            <tr  key={key}>
               <td>{key}</td>
               <td>
                 {itemIcons[key as keyof ItemIcons] && (
-                  <img
+                  <img   style={{ textAlign: "center", display: "block", margin: "0 auto" }}
                     src={itemIcons[key as keyof ItemIcons]}
                     alt={`${key} icon`}
-                    style={{ width: "50px", height: "50px" }}
+                    //style={{ width: "50px", height: "50px" }}
                   />
                 )}
               </td>
-              <td>{itemPrices[key]}</td>
+              <td >{itemPrices[key as keyof ItemPrices]}</td>
+              <td>{rewardValues[key as keyof ItemPrices]}</td>
               <td>
                 <input
                   type="number"
-                  value={itemPrices[key]}
-                  onChange={(e) => handlePriceChange(key, e.target.value)}
+                  value={itemPrices[key as keyof ItemPrices]}
+                  onChange={(e) => handlePriceChange(key as keyof ItemPrices, e.target.value)}
                 />
               </td>
             </tr>
@@ -135,7 +154,7 @@ const UberMaven = () => {
         Calculate profit
       </button>
 
-      <p className="centered-text">Reward per boss</p>
+      <p className="centered-text">Profit per boss</p>
       <p className="centered-text">{profitPerBoss}</p>
     </Layout>
   );
