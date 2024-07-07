@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
 import { useData } from "./dataContext";
-import './bossProfitStyles.css'; // Assurez-vous d'importer votre fichier CSS
+import "./bossProfitStyles.css"; // Assurez-vous d'importer votre fichier CSS
 
 interface ItemIcons {
   realityFragment: string;
@@ -48,7 +48,7 @@ const UberMaven = () => {
     progenesis: 0.11,
     orbOfConflict: 0.35,
     shinyReliquaryKey: 0.015,
-    curioOfPotential: 0.05
+    curioOfPotential: 0.05,
   };
 
   useEffect(() => {
@@ -59,6 +59,7 @@ const UberMaven = () => {
       { itemName: "Curio of Potential", stateKey: "curioOfPotential" },
       { itemName: "Shiny Reliquary Key", stateKey: "shinyReliquaryKey" },
       { itemName: "Orb of Conflict", stateKey: "orbOfConflict" },
+      { itemName: "Chaos Orb", stateKey: "chaosOrb" },
     ];
 
     const newPrices: Partial<ItemPrices> = {};
@@ -83,7 +84,8 @@ const UberMaven = () => {
   const [profitPerBoss, setProfitPerBoss] = useState<number>(0);
 
   const calculateProfitPerBoss = () => {
-    const pricePerRun = itemPrices.realityFragment * rewardValues.realityFragment;
+    const pricePerRun =
+      itemPrices.realityFragment * rewardValues.realityFragment;
     const rewardPerRun =
       itemPrices.viridisVeil * rewardValues.viridisVeil +
       itemPrices.progenesis * rewardValues.progenesis +
@@ -91,7 +93,7 @@ const UberMaven = () => {
       itemPrices.shinyReliquaryKey * rewardValues.shinyReliquaryKey +
       itemPrices.curioOfPotential * rewardValues.curioOfPotential;
 
-    const profitPerBoss = rewardPerRun - pricePerRun;
+    const profitPerBoss = Math.round(rewardPerRun - pricePerRun);
     console.log("Profit per boss:", profitPerBoss);
 
     setProfitPerBoss(profitPerBoss);
@@ -122,24 +124,40 @@ const UberMaven = () => {
         </thead>
         <tbody>
           {Object.keys(itemPrices).map((key) => (
-            <tr  key={key}>
+            <tr key={key}>
               <td>{key}</td>
               <td>
                 {itemIcons[key as keyof ItemIcons] && (
-                  <img   style={{ textAlign: "center", display: "block", margin: "0 auto" }}
+                  <img
+                    style={{
+                      textAlign: "center",
+                      display: "block",
+                      margin: "0 auto",
+                    }}
                     src={itemIcons[key as keyof ItemIcons]}
                     alt={`${key} icon`}
                     //style={{ width: "50px", height: "50px" }}
                   />
                 )}
               </td>
-              <td >{itemPrices[key as keyof ItemPrices]}</td>
+              <td>
+                {itemPrices[key as keyof ItemPrices]}
+
+                <img
+                  style={{ width: "50px", height: "50px" }}
+                  src="https://www.poewiki.net/images/9/9c/Chaos_Orb_inventory_icon.png"
+                  alt="Chaos Orb"
+                />
+              </td>
+
               <td>{rewardValues[key as keyof ItemPrices]}</td>
               <td>
                 <input
                   type="number"
                   value={itemPrices[key as keyof ItemPrices]}
-                  onChange={(e) => handlePriceChange(key as keyof ItemPrices, e.target.value)}
+                  onChange={(e) =>
+                    handlePriceChange(key as keyof ItemPrices, e.target.value)
+                  }
                 />
               </td>
             </tr>
@@ -148,14 +166,21 @@ const UberMaven = () => {
       </table>
 
       <button
-        style={{ textAlign: "center", display: "block", margin: "0 auto" }}
-        onClick={calculateProfitPerBoss}
-      >
-        Calculate profit
-      </button>
+      style={{ textAlign: "center", display: "block", margin: "20px auto" }}
+      onClick={calculateProfitPerBoss}
+    >
+      Calculate profit
+    </button>
 
       <p className="centered-text">Profit per boss</p>
-      <p className="centered-text">{profitPerBoss}</p>
+      <p className="centered-text">
+        {profitPerBoss}{" "}
+        <img
+          style={{ width: "50px", height: "50px" }}
+          src="https://www.poewiki.net/images/9/9c/Chaos_Orb_inventory_icon.png"
+          alt="Chaos Orb"
+        />
+      </p>
     </Layout>
   );
 };
