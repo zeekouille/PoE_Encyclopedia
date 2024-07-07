@@ -10,6 +10,7 @@ import Shaper from "./components/Shaper";
 import { DataProvider } from "./components/dataContext";
 import ApiFetchedPrice from "./components/apiFetchedPrices";
 import { Maven } from "./components/Maven";
+import UberMaven from "./components/uberMaven";
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
           <Route path="/bossprofit/shaper" element={<Shaper />} />
           <Route path="/bossprofit/maven" element={<Maven />} />
           <Route path="/apiFetchedPrice" element={<ApiFetchedPrice />} />
+          <Route path="/bossprofit/uberMaven" element={<UberMaven />} />
         </Routes>
       </Router>
     </DataProvider>

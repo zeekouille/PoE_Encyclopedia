@@ -27,6 +27,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <ul>
               <li><Link to="/bossprofit/maven" className="sub-link">Maven</Link></li>
             </ul>
+            <ul>
+              <li><Link to="/bossprofit/uberMaven" className="sub-link">Uber Maven</Link></li>
+            </ul>
           </li>
           <li className="separator"></li>
           <li>

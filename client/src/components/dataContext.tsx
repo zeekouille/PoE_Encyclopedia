@@ -6,6 +6,7 @@ interface DataContextType {
   data: any[];
   names: string[];
   means: number[];
+  icons: string[]; // Add icons array
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -18,31 +19,29 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   const [data, setData] = useState<any[]>([]);
   const [names, setNames] = useState<string[]>([]);
   const [means, setMeans] = useState<number[]>([]);
+  const [icons, setIcons] = useState<string[]>([]); // State for icons
   const [fetchStatus, setFetchStatus] = useState<{ success: boolean; message: string } | null>(null);
 
   const fetchData = async () => {
     try {
-      const [currencyResponse, fragmentResponse] = await Promise.all([
-        axios.get('https://api.poe.watch/get?category=currency&league=Necropolis'),
-        axios.get('https://api.poe.watch/get?category=fragment&league=Necropolis')
+      const [currencyResponse] = await Promise.all([
+        axios.get('http://localhost:3005/data'),
       ]);
 
       const fetchedCurrencyData = currencyResponse.data;
-      const fetchedFragmentData = fragmentResponse.data;
 
       const fetchedCurrencyNames = fetchedCurrencyData.map((item: any) => item.name);
       const fetchedCurrencyMeans = fetchedCurrencyData.map((item: any) => item.mean);
+      const fetchedCurrencyIcons = fetchedCurrencyData.map((item: any) => item.icon);
 
-      const fetchedFragmentNames = fetchedFragmentData.map((item: any) => item.name);
-      const fetchedFragmentMeans = fetchedFragmentData.map((item: any) => item.mean);
-
-      setData([...fetchedCurrencyData, ...fetchedFragmentData]);
-      setNames([...fetchedCurrencyNames, ...fetchedFragmentNames]);
-      setMeans([...fetchedCurrencyMeans, ...fetchedFragmentMeans]);
+      setData([...fetchedCurrencyData]);
+      setNames([...fetchedCurrencyNames]);
+      setMeans([...fetchedCurrencyMeans]);
+      setIcons([...fetchedCurrencyIcons]);
 
       setFetchStatus({ success: true, message: 'Données récupérées avec succès!' });
 
-      console.log('Data fetched successfully:', [...fetchedCurrencyData, ...fetchedFragmentData]);
+      console.log('Data fetched successfully:', fetchedCurrencyData);
     } catch (error) {
       console.error('Error fetching data:', error);
       setFetchStatus({ success: false, message: 'Échec de la récupération des données.' });
@@ -57,7 +56,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <DataContext.Provider value={{ data, names, means }}>
+    <DataContext.Provider value={{ data, names, means, icons }}>
       {children}
       {fetchStatus && (
         <Popup
